@@ -6,21 +6,25 @@ interface VideoItem {
   title: string;
 }
 
-// Lista de vídeos de exemplo (você poderá substituir por seus próprios vídeos)
-const demoVideos: VideoItem[] = [
-  { id: "dQw4w9WgXcQ", title: "Nosso primeiro encontro" },
-  { id: "QdBZY2fkU-0", title: "Nosso aniversário" },
-  { id: "VuG7ge_8I2Y", title: "Nossa viagem especial" }
+// Lista de vídeos com as músicas que te lembram a pessoa especial
+const musicVideos: VideoItem[] = [
+  { id: "2kqdlAYNEzk", title: "Música 1" },
+  { id: "Af7ieNv0wXY", title: "Música 2" },
+  { id: "LD7b5Y496LM", title: "Música 3" },
+  { id: "Uficn03UqpM", title: "Música 4" },
+  { id: "woAS28GGnAU", title: "Música 5" },
+  { id: "-J7J_IWUhls", title: "Música 6" },
+  { id: "aD3HgrfjrAw", title: "Música 7" }
 ];
 
 const Videos = () => {
-  const [videos, setVideos] = React.useState<VideoItem[]>(demoVideos);
+  const [videos, setVideos] = React.useState<VideoItem[]>(musicVideos);
 
   return (
     <div className="min-h-screen pt-6 pb-20 px-4">
       <div className="container mx-auto max-w-md">
         <h1 className="text-2xl font-bold mb-6 text-center">
-          Nossos Momentos em Vídeo
+          Músicas que me lembram você
         </h1>
         
         <div className="grid grid-cols-1 gap-6">
