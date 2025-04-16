@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Heart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   return (
@@ -21,9 +22,9 @@ const Index = () => {
               <p className="text-muted-foreground text-sm">
                 Uma coleção de vídeos especiais que contam nossa história.
               </p>
-              <a href="/videos" className="btn-romantic mt-4">
+              <Link to="/videos" className="btn-romantic mt-4 block text-center">
                 Ver Vídeos
-              </a>
+              </Link>
             </div>
             
             <div className="card-romantic">
@@ -31,9 +32,9 @@ const Index = () => {
               <p className="text-muted-foreground text-sm">
                 Momentos capturados em imagens para compartilhar e relembrar.
               </p>
-              <a href="/photos" className="btn-romantic mt-4">
+              <Link to="/photos" className="btn-romantic mt-4 block text-center">
                 Ver Fotos
-              </a>
+              </Link>
             </div>
           </div>
         </div>

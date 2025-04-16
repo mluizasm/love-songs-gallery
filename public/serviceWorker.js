@@ -1,12 +1,22 @@
 
 const CACHE_NAME = 'memoria-romantica-v1';
+
+// Obtém o caminho base do deploy (importante para GitHub Pages)
+const getScope = () => {
+  const pathSegments = self.location.pathname.split('/');
+  pathSegments.pop(); // Remove o serviceWorker.js
+  return pathSegments.join('/') + '/';
+};
+
+const scope = getScope();
+
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/logo192.png',
-  '/logo512.png',
-  '/favicon.ico',
+  scope,
+  scope + 'index.html',
+  scope + 'manifest.json',
+  scope + 'logo192.png',
+  scope + 'logo512.png',
+  scope + 'favicon.ico',
 ];
 
 // Instalação do service worker e cache dos recursos estáticos
