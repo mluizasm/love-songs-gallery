@@ -1,0 +1,9 @@
+
+{
+  "appId": "app.lovable.b7d4f54d1b1f48188a6a91221bc65a52",
+  "appName": "love-songs-gallery",
+  "server": {
+    "url": "https://b7d4f54d-1b1f-4818-8a6a-91221bc65a52.lovableproject.com?forceHideBadge=true",
+    "cleartext": true
+  }
+}
