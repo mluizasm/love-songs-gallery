@@ -28,6 +28,9 @@ self.addEventListener('install', (event) => {
         return cache.addAll(urlsToCache);
       })
   );
+  
+  // Força a ativação imediata (não espera por outras abas fecharem)
+  self.skipWaiting();
 });
 
 // Ativação do service worker e limpeza de caches antigos
@@ -42,34 +45,31 @@ self.addEventListener('activate', (event) => {
           }
         })
       );
+    }).then(() => {
+      // Assume o controle de todas as páginas imediatamente
+      self.clients.claim();
     })
   );
 });
 
-// Estratégia de cache: cache-first
+// Estratégia de cache: network-first com fallback para cache
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request)
+    fetch(event.request)
       .then((response) => {
-        if (response) {
-          return response;
+        // Se a resposta for bem-sucedida, armazene-a no cache
+        if (response.ok) {
+          const responseToCache = response.clone();
+          caches.open(CACHE_NAME)
+            .then((cache) => {
+              cache.put(event.request, responseToCache);
+            });
         }
-        return fetch(event.request).then(
-          (response) => {
-            if(!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-
-            const responseToCache = response.clone();
-
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                cache.put(event.request, responseToCache);
-              });
-
-            return response;
-          }
-        );
+        return response;
+      })
+      .catch(() => {
+        // Se a rede falhar, tente responder do cache
+        return caches.match(event.request);
       })
   );
 });

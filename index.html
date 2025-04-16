@@ -3,15 +3,21 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Nosso Álbum de Memórias</title>
     <meta name="description" content="Um álbum romântico de memórias especiais em vídeos e fotos" />
     <meta name="theme-color" content="#ff94a6" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Memórias" />
+    <meta name="application-name" content="Memórias" />
+    <meta name="msapplication-TileColor" content="#ff94a6" />
+    <meta name="msapplication-navbutton-color" content="#ff94a6" />
     <meta name="author" content="Lovable" />
 
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/logo192.png" />
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="./favicon.ico" />
+    <link rel="apple-touch-icon" href="./logo192.png" />
+    <link rel="manifest" href="./manifest.json" />
 
     <meta property="og:title" content="Nosso Álbum de Memórias" />
     <meta property="og:description" content="Um álbum romântico de memórias especiais em vídeos e fotos" />
@@ -29,9 +35,10 @@
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
     <script>
+      // Registrar o service worker manualmente (fallback)
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/serviceWorker.js')
+          navigator.serviceWorker.register('./serviceWorker.js')
             .then(function(registration) {
               console.log('ServiceWorker registration successful with scope: ', registration.scope);
             })
@@ -40,6 +47,17 @@
             });
         });
       }
+    </script>
+    
+    <!-- Script para adicionar o botão de instalação -->
+    <script>
+      let deferredPrompt;
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        console.log('App pode ser instalada');
+        // Você pode mostrar um botão de instalação aqui
+      });
     </script>
   </body>
 </html>

@@ -9,6 +9,7 @@ import Videos from "./pages/Videos";
 import Photos from "./pages/Photos";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
+import InstallPWA from "./components/InstallPWA";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
             <Route path="/photos" element={<Photos />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <InstallPWA />
           <Navbar />
         </div>
       </HashRouter>
