@@ -28,10 +28,13 @@ const Photos = () => {
     // Número do WhatsApp fornecido
     const phoneNumber = "5581982553887";
     
-    // Crie a mensagem para compartilhar - Usando a nova mensagem solicitada
-    const message = `Noivorado acionou este giftcard ❤`;
+    // Obtenha a URL completa da imagem para compartilhar
+    const fullImageUrl = window.location.origin + imageUrl;
     
-    // Criar o link do WhatsApp apenas com a mensagem de texto
+    // Crie a mensagem para compartilhar - Usando a mensagem solicitada
+    const message = `Noivorado acionou este giftcard ❤\n\n${fullImageUrl}`;
+    
+    // Criar o link do WhatsApp com a mensagem e a URL da imagem
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     
     // Abrir em uma nova aba
