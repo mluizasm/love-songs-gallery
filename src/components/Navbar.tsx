@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Heart, Image, Youtube } from 'lucide-react';
+import { Heart, Music, Gift } from 'lucide-react';
 
 const Navbar = () => {
   return (
@@ -28,8 +28,8 @@ const Navbar = () => {
             }`
           }
         >
-          <Youtube className="w-5 h-5 mb-1" />
-          <span className="text-xs">Vídeos</span>
+          <Music className="w-5 h-5 mb-1" />
+          <span className="text-xs">Músicas</span>
         </NavLink>
         
         <NavLink 
@@ -40,8 +40,8 @@ const Navbar = () => {
             }`
           }
         >
-          <Image className="w-5 h-5 mb-1" />
-          <span className="text-xs">Fotos</span>
+          <Gift className="w-5 h-5 mb-1" />
+          <span className="text-xs">Giftcard</span>
         </NavLink>
       </div>
     </nav>
