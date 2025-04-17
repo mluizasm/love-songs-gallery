@@ -5,7 +5,11 @@
 export function register() {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      const swUrl = `${window.location.origin}/serviceWorker.js`;
+      // Ajuste para GitHub Pages - considera o caminho base
+      const baseUrl = window.location.pathname.includes('/love-songs-gallery/') 
+        ? '/love-songs-gallery/' 
+        : '/';
+      const swUrl = `${window.location.origin}${baseUrl}serviceWorker.js`;
       
       navigator.serviceWorker
         .register(swUrl)

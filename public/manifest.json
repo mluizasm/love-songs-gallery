@@ -21,8 +21,8 @@
       "purpose": "any maskable"
     }
   ],
-  "id": "/",
-  "start_url": "./",
+  "id": "/love-songs-gallery/",
+  "start_url": "/love-songs-gallery/",
   "display": "standalone",
   "orientation": "portrait",
   "theme_color": "#ff94a6",
