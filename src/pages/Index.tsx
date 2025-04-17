@@ -32,7 +32,7 @@ const Index = () => {
               <p className="text-muted-foreground text-sm">
                 Aproveite seus giftcards de aniversário.
               </p>
-              <Link to="/photos" className="btn-romantic mt-4 block text-center">
+              <Link to="/giftcardnoivorado" className="btn-romantic mt-4 block text-center">
                 Ver Giftcards
               </Link>
             </div>

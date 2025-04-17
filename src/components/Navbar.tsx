@@ -33,7 +33,7 @@ const Navbar = () => {
         </NavLink>
         
         <NavLink 
-          to="/photos" 
+          to="/giftcardnoivorado" 
           className={({ isActive }) => 
             `flex flex-col items-center justify-center w-24 h-full transition-all ${
               isActive ? 'text-primary font-medium' : 'text-muted-foreground'
