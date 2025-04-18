@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  base: "/love-songs-gallery/", // Caminho base para GitHub Pages
+  base: "./", // Caminho base relativo para funcionar em qualquer ambiente
   plugins: [
     react(),
     mode === 'development' &&

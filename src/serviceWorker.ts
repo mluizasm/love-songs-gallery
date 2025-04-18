@@ -1,15 +1,21 @@
 
-
 // Este é um Service Worker para habilitar recursos PWA
 
 // Registrar o Service Worker
 export function register() {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      // Ajuste para GitHub Pages - considera o caminho base
-      const baseUrl = window.location.pathname.includes('/love-songs-gallery/') 
-        ? '/love-songs-gallery/' 
-        : '/';
+      // Determina o URL base onde o app está rodando
+      const isLovableDomain = window.location.hostname.includes('lovable.app');
+      const isGithubPages = window.location.hostname.includes('github.io');
+      
+      let baseUrl = '/';
+      if (isGithubPages && window.location.pathname.includes('/love-songs-gallery/')) {
+        baseUrl = '/love-songs-gallery/';
+      } else if (isLovableDomain) {
+        baseUrl = '/';
+      }
+      
       const swUrl = `${window.location.origin}${baseUrl}serviceWorker.js`;
       
       navigator.serviceWorker
