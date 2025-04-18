@@ -52,24 +52,34 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Estratégia de cache: network-first com fallback para cache
+// Estratégia de cache: stale-while-revalidate
+// Responde com cache se disponível, mas atualiza o cache com a resposta da rede
 self.addEventListener('fetch', (event) => {
+  // Ignora requisições POST ou não GET
+  if (event.request.method !== 'GET') {
+    return;
+  }
+
   event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        // Se a resposta for bem-sucedida, armazene-a no cache
-        if (response.ok) {
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME)
-            .then((cache) => {
-              cache.put(event.request, responseToCache);
-            });
-        }
-        return response;
-      })
-      .catch(() => {
-        // Se a rede falhar, tente responder do cache
-        return caches.match(event.request);
-      })
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.match(event.request).then((cachedResponse) => {
+        const fetchPromise = fetch(event.request)
+          .then((networkResponse) => {
+            // Verifica se a resposta é válida
+            if (networkResponse && networkResponse.ok && networkResponse.type === 'basic') {
+              // Faz uma cópia da resposta para armazenar no cache
+              cache.put(event.request, networkResponse.clone());
+            }
+            return networkResponse;
+          })
+          .catch(() => {
+            // Falha na rede, não faz nada além de registrar o erro
+            console.log('Falha na rede para:', event.request.url);
+          });
+
+        // Retorna a resposta em cache ou aguarda pela rede
+        return cachedResponse || fetchPromise;
+      });
+    })
   );
 });

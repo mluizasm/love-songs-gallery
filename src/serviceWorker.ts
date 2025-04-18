@@ -1,4 +1,5 @@
 
+
 // Este é um Service Worker para habilitar recursos PWA
 
 // Registrar o Service Worker
