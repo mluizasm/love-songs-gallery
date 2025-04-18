@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  base: "./", // Caminho base relativo para funcionar em qualquer ambiente
+  base: "", // Caminho base vazio para funcionar em qualquer ambiente
   plugins: [
     react(),
     mode === 'development' &&
